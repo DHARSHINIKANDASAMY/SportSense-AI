@@ -294,17 +294,6 @@ VITE_SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 - **GitHub Pages**: Free static hosting (frontend only)
 - **Firebase Hosting**: Google's static hosting solution
 
-### Contact
-
-If you want to contact me, you can reach me at:
-- **GitHub**: [Dharsan5](https://github.com/Dharsan5)
-- **Email**: dharsansp.23cse@kongu.edu
-- **Institution**: KEC, Erode
-- **LinkedIn**: [Connect with me](https://linkedin.com/in/dharsan5)
-
-### License
-
-This project is **free to use** and does not contain any license. Feel free to use it for educational purposes and personal projects.
 
 ### Acknowledgments
 
@@ -324,7 +313,6 @@ This project is **free to use** and does not contain any license. Feel free to u
 
 <div align="center">
   <h3>🔥 SportSense AI - Where Technology Meets Fitness 🔥</h3>
-  <p><strong>Made with ❤️ by Dharshan</strong></p>
   <p>
     <a href="https://github.com/Dharsan5/SportSense-AI-">⭐ Star this repo</a> • 
     <a href="https://github.com/Dharsan5/SportSense-AI-/issues">🐛 Report Bug</a> • 
