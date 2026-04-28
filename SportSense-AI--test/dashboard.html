@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - SportSense AI</title>
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- custom css link -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/dashboard.css">
+  <link rel="stylesheet" href="./assets/css/pages.css">
+
+  <!-- google font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Catamaran:wght@600;700;800;900&family=Rubik:wght@400;500;800&display=swap"
+    rel="stylesheet">
+</head>
+
+<body id="top">
+
+  <!-- HEADER -->
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="index.html" class="logo">
+        <ion-icon name="barbell-sharp" aria-hidden="true"></ion-icon>
+        <span class="span">SportSense AI</span>
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-sharp" aria-hidden="true"></ion-icon>
+        </button>
+
+        <ul class="navbar-list">
+          <li>
+            <a href="index.html" class="navbar-link" data-nav-link>Home</a>
+          </li>
+          <li>
+            <a href="dashboard.html" class="navbar-link active" data-nav-link>Dashboard</a>
+          </li>
+          <li>
+            <a href="live-session.html" class="navbar-link" data-nav-link>Live Session</a>
+          </li>
+          <li>
+            <a href="profile.html" class="navbar-link" data-nav-link>Profile</a>
+          </li>
+          <li>
+            <a href="#" class="navbar-link" data-nav-link onclick="logout()">Logout</a>
+          </li>
+        </ul>
+      </nav>
+
+      <a href="live-session.html" class="btn btn-secondary">
+        <span data-user-name>User</span> • Start Session
+      </a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <article>
+
+      <!-- HERO SECTION -->
+      <section class="section hero bg-dark has-after has-bg-image" id="dashboard-hero" aria-label="dashboard-hero" 
+        style="background-image: url('./assets/images/hero-bg.png')">
+        <div class="container">
+          <div class="hero-content">
+            <p class="hero-subtitle">
+              <strong class="strong">Welcome User</strong> to your Dashboard
+            </p>
+            <h1 class="h1 hero-title">Track Your Progress, Perfect Your Form</h1>
+            <p class="section-text">
+              Monitor your fitness journey with real-time insights and AI-powered analytics tailored just for you.
+            </p>
+           
+          </div>
+          <div class="hero-banner">
+            <img src="./assets/images/hero-banner.png" width="660" height="753" alt="dashboard banner" class="w-100">
+            <img src="./assets/images/hero-circle-one.png" width="666" height="666" aria-hidden="true" alt=""
+              class="circle circle-1">
+            <img src="./assets/images/hero-circle-two.png" width="666" height="666" aria-hidden="true" alt=""
+              class="circle circle-2">
+            <img src="./assets/images/heart-rate.svg" width="255" height="270" alt="heart rate"
+              class="abs-img abs-img-1">
+            <img src="./assets/images/calories.svg" width="348" height="224" alt="calories" class="abs-img abs-img-2">
+          </div>
+        </div>
+      </section>
+
+      <!-- DASHBOARD SECTION -->
+      <section class="section dashboard" aria-label="dashboard">
+        <div class="container">
+
+          <div class="dashboard-welcome">
+            <p class="section-subtitle">Your Progress</p>
+            <h2 class="h2 section-title" data-user-greeting>Good morning, User!</h2>
+            <p class="dashboard-date" id="current-date"></p>
+          </div>
+
+          <!-- Daily Readiness Score -->
+          <div class="readiness-card">
+            <h2 class="h2">Daily Readiness</h2>
+            <div class="readiness-circle">
+              <svg width="200" height="200" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,154,1,0.2)" stroke-width="8" />
+                <circle cx="100" cy="100" r="90" fill="none" stroke="url(#gradient)" stroke-width="8" 
+                        stroke-dasharray="480 565" stroke-linecap="round" transform="rotate(-90 100 100)" />
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ff9a01;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#ff8a50;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="readiness-score">
+                <span class="score">85</span>
+                <span class="label">Ready</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metrics Grid -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-icon">💤</div>
+              <div class="metric-info">
+                <h3 class="h4">Sleep</h3>
+                <span class="metric-value">7h 32m</span>
+                <span class="metric-status good">Good</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon">❤️</div>
+              <div class="metric-info">
+                <h3 class="h4">HRV</h3>
+                <span class="metric-value">42ms</span>
+                <span class="metric-status optimal">Optimal</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon">📊</div>
+              <div class="metric-info">
+                <h3 class="h4">Resting HR</h3>
+                <span class="metric-value">58 bpm</span>
+                <span class="metric-status good">Normal</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Start Session CTA -->
+          <a href="live-session.html" class="start-session-btn">
+            <div class="btn-content">
+              <span class="btn-text">Start Session with Alex</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="section footer-top bg-dark has-bg-image" style="background-image: url('./assets/images/footer-bg.png')">
+      <div class="container">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <ion-icon name="barbell-sharp" aria-hidden="true"></ion-icon>
+            <span class="span">SportSense AI</span>
+          </a>
+          <p class="footer-brand-text">
+            Transform your fitness journey with AI-powered training. Smart workouts, perfect form, better results.
+          </p>
+          <div class="wrapper">
+            <img src="./assets/images/footer-clock.png" width="34" height="34" loading="lazy" alt="Clock">
+            <ul class="footer-brand-list">
+              <li>
+                <p class="footer-brand-title">Monday - Friday</p>
+                <p>24/7 AI Available</p>
+              </li>
+              <li>
+                <p class="footer-brand-title">Weekend Sessions</p>
+                <p>Anytime Training</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">
+          &copy; 2025 SportSense AI. All Rights Reserved By <a href="#" class="copyright-link">dharshan.</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <a href="#top" aria-label="back to top" data-back-top-btn class="back-top-btn">
+    <ion-icon name="caret-up-sharp" aria-hidden="true"></ion-icon>
+  </a>
+
+  <!-- custom js link -->
+  <script src="./assets/js/script.js" defer></script>
+  <script src="./assets/js/dashboard.js" defer></script>
+
+  <!-- ionicon link -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

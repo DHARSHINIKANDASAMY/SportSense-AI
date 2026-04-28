@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Session - SportSense AI</title>
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- custom css link -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/live-session.css">
+
+  <!-- google font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Catamaran:wght@600;700;800;900&family=Rubik:wght@400;500;800&display=swap"
+    rel="stylesheet">
+</head>
+
+<body id="top">
+
+  <!-- HEADER -->
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="index.html" class="logo">
+        <ion-icon name="barbell-sharp" aria-hidden="true"></ion-icon>
+        <span class="span">SportSense AI</span>
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-sharp" aria-hidden="true"></ion-icon>
+        </button>
+
+        <ul class="navbar-list">
+          <li>
+            <a href="index.html" class="navbar-link" data-nav-link>Home</a>
+          </li>
+          <li>
+            <a href="dashboard.html" class="navbar-link" data-nav-link>Dashboard</a>
+          </li>
+          <li>
+            <a href="live-session.html" class="navbar-link active" data-nav-link>Live Session</a>
+          </li>
+          <li>
+            <a href="profile.html" class="navbar-link" data-nav-link>Profile</a>
+          </li>
+          <li>
+            <a href="#" class="navbar-link" data-nav-link onclick="logout()">Logout</a>
+          </li>
+        </ul>
+      </nav>
+
+      <a href="live-session.html" class="btn btn-secondary">
+        <span data-user-name>User</span> • Live Session
+      </a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <div class="live-session">
+      
+      <!-- Camera View -->
+      <div class="camera-container">
+        <video id="camera-feed" autoplay muted playsinline style="display: none;"></video>
+        <canvas id="pose-canvas" style="display: none;"></canvas>
+        
+        <div class="camera-placeholder" id="camera-placeholder">
+          <div class="camera-icon">📹</div>
+          <p>Initializing Camera...</p>
+          <small>Please allow camera access when prompted</small>
+        </div>
+
+        <div class="pose-overlay" id="pose-overlay">
+          <div class="skeleton-points" id="skeleton-points">
+            <!-- Dynamic pose detection points will be added here -->
+          </div>
+        </div>
+
+        <!-- Camera Status -->
+        <div class="camera-status" id="camera-status">
+          <div class="status-indicator connecting">🔴</div>
+          <span class="status-text">Connecting to camera...</span>
+        </div>
+
+        <!-- Session Stats Overlay -->
+        <div class="stats-overlay">
+          <div class="timer" id="session-timer">0:00</div>
+          <div class="workout-stats">
+            <div class="stat">
+              <span class="label">Set</span>
+              <span class="value" id="current-set">1/4</span>
+            </div>
+            <div class="stat">
+              <span class="label">Reps</span>
+              <span class="value" id="current-reps">0/10</span>
+            </div>
+            <div class="stat">
+              <span class="label">Weight</span>
+              <span class="value" id="current-weight">135lbs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Voice Feedback Panel -->
+      <div class="feedback-panel">
+        <div class="feedback-header">
+          <h3>Live AI Coach</h3>
+          <div class="voice-controls">
+            <button id="voice-toggle" class="voice-btn active" title="Toggle Voice Feedback">
+              🔊 Voice ON
+            </button>
+          </div>
+        </div>
+        
+        <div class="voice-status" id="voice-status">
+          <span class="status-dot"></span>
+          <span class="status-text">AI Coach Ready</span>
+        </div>
+        
+        <div class="feedback-transcript" id="feedback-transcript">
+          <div class="feedback-item">
+            <span class="timestamp">0:00</span>
+            <span class="message">Welcome! Get ready to start your workout session.</span>
+            <span class="voice-indicator">🔊</span>
+          </div>
+        </div>
+        
+        <div class="current-exercise">
+          <h4>Current Exercise</h4>
+          <p>Barbell Back Squat</p>
+          <div class="form-indicator">
+            <span class="indicator good"></span>
+            <span>Form: Good</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- End Session Button -->
+      <a href="post-session.html" class="end-session-btn">
+        End Session
+      </a>
+
+    </div>
+  </main>
+
+  <!-- MediaPipe Pose Detection -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+
+  <!-- TensorFlow.js and Pose Detection Models -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.0.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.0.0/dist/pose-detection.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet@2.2.2/dist/posenet.min.js"></script>
+
+  <!-- Environment configuration -->
+  <script src="./assets/js/env-config.js"></script>
+  
+  <!-- custom js link -->
+  <script src="./assets/js/script.js" defer></script>
+  <script src="./assets/js/live-session.js" defer></script>
+
+  <!-- ionicon link -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
